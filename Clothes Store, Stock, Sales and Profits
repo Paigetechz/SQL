@@ -1,0 +1,36 @@
+--Create a Clothes Store database
+CREATE TABLE Clothes_Store (id INTEGER PRIMARY KEY,item_name TEXT, stock_amount_purchased INTEGER, purchase_cost_£ REAL,sales NUMERIC,sales_cost_£ NUMERIC);  
+
+INSERT INTO Clothes_Store VALUES (1, "Top",100,3.25,22,7.99);
+INSERT INTO Clothes_Store VALUES (2, "Sandals",100,4.15,68,12.99);
+INSERT INTO Clothes_Store VALUES (3, "Maxi_Dress",100,3.25,40,9.99);
+INSERT INTO Clothes_Store VALUES (4, "Shirt",100,5.95,72,9.99);
+INSERT INTO Clothes_Store VALUES (5, "Skirt",100,3.75,23,7.95);
+INSERT INTO Clothes_Store VALUES (6, "Shorts",100,4.25,10,6.99);
+INSERT INTO Clothes_Store VALUES (7, "Sunglasses",100,4.80,72,9.99);
+INSERT INTO Clothes_Store VALUES (8, "Beach_Towel",100,6.25,21,15.99);
+INSERT INTO Clothes_Store VALUES (9, "Belt",100,1.30,4,3.99);
+INSERT INTO Clothes_Store VALUES (10, "Polo_Shirt",100,2.75,82,9.99);
+INSERT INTO Clothes_Store VALUES (11, "Midi_Dress",100,4.80,67,7.99);
+INSERT INTO Clothes_Store VALUES (12, "Jumpsuit",100,4.95,54,12.99);
+INSERT INTO Clothes_Store VALUES (13, "Playsuit",100,3.15,84,9.99);
+INSERT INTO Clothes_Store VALUES (14, "Silk_Scarf",100,1.20,32,6.95);
+INSERT INTO Clothes_Store VALUES (15, "Summer_Hat",100,2.35,74,9.99);
+
+--display the database ordered by item with the most sales.
+SELECT * FROM Clothes_Store ORDER BY  sales DESC;
+
+--what is the item on which you can make the most profit-? Order by the most profitable item that can be sold.
+SELECT *From Clothes_Store ORDER BY (sales_cost_£ - purchase_cost_£)desc;
+
+--What items sold that have made the most profit so far? Order from most to least profitable items so far. 
+SELECT *From Clothes_Store ORDER BY (sales_cost_£ - purchase_cost_£)*(sales)desc;
+
+What is the total and price of stock purchased? What is the total sale and sales cost?
+SELECT SUM(stock_amount_purchased), SUM (sales), SUM (Stock_amount_purchased*purchase_cost_£),SUM(sales_cost_£*sales) FROM Clothes_Store;
+
+How much stock is left in total?
+SELECT SUM(stock_amount_purchased)-SUM(sales)FROM Clothes_Store;
+
+What is the profit made so far?
+SELECT SUM(sales_cost_£*sales-Stock_amount_purchased*purchase_cost_£) FROM Clothes_Store;
